@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"></meta>
+		<title>ITAEM</title>
+		<!--必须使用高版本的才能提示$.ajax-->
+		<script type="text/javascript" src="../js/jquery-1.7.2.js"></script>
+		<script type="text/javascript">
+			$.ajax({
+				type: "Get",
+				url: "http://localhost/picture/all",
+				success:function(result){
+					$('#pic').empty()
+					show(result)
+				}
+			});
+			function show(result){
+				var lists=result
+				/* 遍历，省略了 for 循环 */
+				$.each(lists, function(index,img) {
+					/*必须独立出来再放进入*/
+					var img=$("<img></img>").attr("src",img.url)
+					$('#pic').append("<hr />").append(img)
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="pic"></div>
+
+	</body>
+
+</html>
